@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resources(['vidprofesija' => 'VidProfesijaController',
+                  'viddarbavieta' => 'VidDarbavietaController',
+                  'darbavieta' => 'DarbavietaController',
+                  'profesija' => 'ProfesijaController',
+                  'atalgojums' => 'AtalgojumsController']);
