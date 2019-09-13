@@ -14,7 +14,7 @@ class AtalgojumsController extends Controller
      */
     public function index()
     {
-        //
+        return view('atalgojums');
     }
 
     /**
