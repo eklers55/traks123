@@ -14,7 +14,7 @@ class VidProfesijaController extends Controller
      */
     public function index()
     {
-        //
+        return view('vidprofesija');
     }
 
     /**

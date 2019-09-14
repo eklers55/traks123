@@ -14,7 +14,7 @@ class VidDarbavietaController extends Controller
      */
     public function index()
     {
-        //
+        return view('viddarbavieta');
     }
 
     /**
