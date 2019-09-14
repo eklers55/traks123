@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Vid_Atalgojums_Profesija;
 use Illuminate\Http\Request;
 

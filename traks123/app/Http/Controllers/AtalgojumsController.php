@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Atalgojums;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,14 @@ class AtalgojumsController extends Controller
      */
     public function index()
     {
-        return view('atalgojums');
+        //return view('atalgojums');
+        
+        $atalgojums = DB::table('atalgojums')->pluck('alga');
+        //$items = Items::pluck('name', 'id');
+
+        return view('atalgojums', ['atalgojums' => $atalgojums]);
+        
+        
     }
 
     /**

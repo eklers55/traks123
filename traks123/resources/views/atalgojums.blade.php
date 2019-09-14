@@ -65,5 +65,8 @@
     </head>
     <body>
         <p>Hello world!</p>
+        {!! Form::open() !!}
+        {!! Form::select('alga', $atalgojums, null, ['class' => 'form-control']) !!}
+        {!! Form::close() !!}
     </body>
 </html>
