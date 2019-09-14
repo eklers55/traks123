@@ -65,8 +65,15 @@
     </head>
     <body>
         <p>Hello world!</p>
-        {!! Form::open() !!}
-        {!! Form::select('alga', $atalgojums, null, ['class' => 'form-control']) !!}
+        {!! Form::open(['action' => 'AtalgojumsController@store', 'method' => 'POST']) !!}
+        {!! Form::label('Izvēlies savu profesiju:') !!}
+        {!! Form::select('nosaukums', $profesija, null, ['class' => 'form-control']) !!}
+        {!! Form::label('Izvēlies savu darba vietu:') !!}
+        {!! Form::select('uznemums', $darbavieta, null, ['class' => 'form-control']) !!}
+        {!! Form::label('Ievadi savu algu:') !!}
+        {!! Form::text('alga', $atalgojums, null, ['class' => 'form-control']) !!}
+        {!! Form::submit('Saglabāt!', ['class' => 'btn btn-info']) !!}
         {!! Form::close() !!}
+        
     </body>
 </html>

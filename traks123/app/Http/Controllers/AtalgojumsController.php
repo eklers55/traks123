@@ -16,11 +16,12 @@ class AtalgojumsController extends Controller
     public function index()
     {
         //return view('atalgojums');
-        
-        $atalgojums = DB::table('atalgojums')->pluck('alga');
+        //$atalgojums = DB::table('atalgojums')->pluck('alga');
+        $profesija = DB::table('profesija')->pluck('nosaukums');
+        $darbavieta = DB::table('darbavieta')->pluck('uznemums');
         //$items = Items::pluck('name', 'id');
 
-        return view('atalgojums', ['atalgojums' => $atalgojums]);
+        return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta]);
         
         
     }
@@ -43,7 +44,20 @@ class AtalgojumsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nosaukums' => 'required',
+            'uznemums' => 'required',
+            'alga' => 'required'
+        ]);
+
+        $atalgojums = new Atalgojums;
+        $atalgojums->nosaukums = $request->input('nosaukums');
+        $atalgojums->uznemums = $request->input('uznemums');
+        $atalgojums->alga = $request->input('alga');
+        
+        
+        
+        return redirect('/atalgojums');
     }
 
     /**
