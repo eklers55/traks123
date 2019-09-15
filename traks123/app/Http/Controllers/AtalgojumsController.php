@@ -33,6 +33,7 @@ class AtalgojumsController extends Controller
      */
     public function create()
     {
+        
         //
     }
 
