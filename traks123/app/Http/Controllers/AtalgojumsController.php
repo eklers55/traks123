@@ -17,8 +17,8 @@ class AtalgojumsController extends Controller
     {
         //return view('atalgojums');
         //$atalgojums = DB::table('atalgojums')->pluck('alga');
-        $profesija = DB::table('profesija')->pluck('nosaukums');
-        $darbavieta = DB::table('darbavieta')->pluck('uznemums');
+        $profesija = DB::table('profesija')->pluck('nosaukums','id');
+        $darbavieta = DB::table('darbavieta')->pluck('uznemums','id');
         //$items = Items::pluck('name', 'id');
 
         return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta]);
@@ -49,7 +49,7 @@ class AtalgojumsController extends Controller
             'uznemums' => 'required',
             'alga' => 'required'
         ]);
-
+        // add to atalgojums
         $atalgojums = new Atalgojums;
         $atalgojums->nosaukums = $request->input('nosaukums');
         $atalgojums->uznemums = $request->input('uznemums');
