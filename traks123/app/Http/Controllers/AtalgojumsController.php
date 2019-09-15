@@ -33,7 +33,7 @@ class AtalgojumsController extends Controller
      */
     public function create()
     {
-        
+
         //
     }
 
@@ -50,15 +50,19 @@ class AtalgojumsController extends Controller
             'uznemums' => 'required',
             'alga' => 'required'
         ]);
-        // add to atalgojums
+        // add to atalgojums       
         $atalgojums = new Atalgojums;
-        $atalgojums->nosaukums = $request->input('nosaukums');
-        $atalgojums->uznemums = $request->input('uznemums');
+        $atalgojums->lietotajs_id = '1';
         $atalgojums->alga = $request->input('alga');
+        $atalgojums->profesija_id = $request->input('nosaukums');
+        $atalgojums->uznemums_id = $request->input('uznemums');
+
+        $atalgojums->save();
         
         
         
         return redirect('/atalgojums');
+    
     }
 
     /**
