@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Atalgojums;
+use App\Vid_Atalgojums_Darbavieta;
+use App\Vid_Atalgojums_Profesija;
+
 use Illuminate\Http\Request;
 
 class AtalgojumsController extends Controller
@@ -56,8 +59,17 @@ class AtalgojumsController extends Controller
         $atalgojums->alga = $request->input('alga');
         $atalgojums->profesija_id = $request->input('nosaukums');
         $atalgojums->uznemums_id = $request->input('uznemums');
-
         $atalgojums->save();
+
+        $viddarbavieta = new Vid_Atalgojums_Darbavieta;
+        $viddarbavieta->uznemums_id = $request->input('uznemums');
+        $viddarbavieta->alga = $request->input('alga');
+        $viddarbavieta->save();
+
+        $vidprofesija = new Vid_Atalgojums_Profesija;
+        $vidprofesija->profesija_id = $request->input('uznemums');
+        $vidprofesija->alga = $request->input('alga');
+        $vidprofesija->save();
         
         
         
