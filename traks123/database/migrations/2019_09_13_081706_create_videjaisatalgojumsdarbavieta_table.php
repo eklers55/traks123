@@ -13,7 +13,7 @@ class CreateVidejaisatalgojumsdarbavietaTable extends Migration
      */
     public function up()
     {
-        Schema::create('videjais_atalgojums_darbavieta', function (Blueprint $table) {
+        Schema::create('vid_atalgojums_darbavieta', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('uznemums_id');
             $table->unsignedBigInteger('atalgojums_id');
@@ -29,6 +29,6 @@ class CreateVidejaisatalgojumsdarbavietaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videjais_atalgojums_darbavieta');
+        Schema::dropIfExists('vid_atalgojums_darbavieta');
     }
 }
