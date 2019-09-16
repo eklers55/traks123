@@ -60,15 +60,18 @@ class AtalgojumsController extends Controller
         $atalgojums->profesija_id = $request->input('nosaukums');
         $atalgojums->uznemums_id = $request->input('uznemums');
         $atalgojums->save();
+        $last_id = $atalgojums->id;
 
+        // add to vid atalgojums darbavieta
         $viddarbavieta = new Vid_Atalgojums_Darbavieta;
         $viddarbavieta->uznemums_id = $request->input('uznemums');
-        $viddarbavieta->alga = $request->input('alga');
+        $viddarbavieta->atalgojums_id = $last_id;
         $viddarbavieta->save();
-
+        
+        // add to vid atalgojums profesija
         $vidprofesija = new Vid_Atalgojums_Profesija;
         $vidprofesija->profesija_id = $request->input('uznemums');
-        $vidprofesija->alga = $request->input('alga');
+        $vidprofesija->atalgojums_id = $last_id;
         $vidprofesija->save();
         
         

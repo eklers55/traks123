@@ -15,7 +15,7 @@ class DarbavietaController extends Controller
      */
     public function index()
     {
-        //
+        return view('darbavieta');
     }
 
     /**
@@ -36,7 +36,18 @@ class DarbavietaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'uznemums' => 'required',
+            'adrese' => 'required'
+        ]);
+
+        //add darba vieta
+        $darbavieta = new Darbavieta;
+        $darbavieta->uznemums = $request->input('uznemums');
+        $darbavieta->adrese = $request->input('adrese');
+        $darbavieta->save();
+        return view('darbavieta');
     }
 
     /**

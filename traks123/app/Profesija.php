@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profesija extends Model
 {
-    //
+    public $timestamps = false;
+    protected $table = 'profesija';
+    protected $fillable = [
+        'nosaukums',
+    ];
 }

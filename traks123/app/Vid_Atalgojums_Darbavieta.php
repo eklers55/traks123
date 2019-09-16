@@ -8,4 +8,5 @@ class Vid_Atalgojums_Darbavieta extends Model
 {
     //
     public $timestamps = false;
+    protected $table = 'vid_atalgojums_darbavieta';
 }

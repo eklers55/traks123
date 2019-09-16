@@ -16,6 +16,7 @@ class ProfesijaController extends Controller
     public function index()
     {
         //
+        return view('profesija');
     }
 
     /**
@@ -37,7 +38,17 @@ class ProfesijaController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'nosaukums' => 'required',
+        ]);
+    
+        $profesija = new Profesija;
+        $profesija->nosaukums = $request->input('nosaukums');
+        $profesija->save();
+
+        return view('profesija');
     }
+
 
     /**
      * Display the specified resource.
