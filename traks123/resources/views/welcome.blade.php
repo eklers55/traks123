@@ -6,10 +6,12 @@
 
         <title>GODIGASAMAKSA</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+  <!-- theme -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{{ URL::asset('css/freelancer.min.css') }}">
         <style>
             html, body {
                 background-color: #fff;
@@ -68,12 +70,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/atalgojums') }}">Godīga Samaksa</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Ieiet</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Reģistrēties</a>
                         @endif
                     @endauth
                 </div>
@@ -81,7 +83,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    GODIGA SAMAKSA
+                    GODĪGA SAMAKSA
                 </div>
 
                 
