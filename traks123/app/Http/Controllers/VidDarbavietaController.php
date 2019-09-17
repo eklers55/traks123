@@ -15,7 +15,9 @@ class VidDarbavietaController extends Controller
      */
     public function index()
     {
-        return view('viddarbavieta');
+        $darbavieta = DB::table('darbavieta')->pluck('uznemums','id');
+        
+        return view('viddarbavieta', ['darbavieta' => $darbavieta]);
     }
 
     /**
@@ -35,8 +37,23 @@ class VidDarbavietaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $id=$request->input('uznemums');
+
+        $viddarbavieta = DB::table('vid_atalgojums_darbavieta')->
+        join('atalgojums', 'vid_atalgojums_darbavieta.atalgojums_id', '=', 'atalgojums.id')->
+        join('darbavieta', function($join) use ($request)
+        {
+            $join->on('vid_atalgojums_darbavieta.uznemums_id', '=', 'darbavieta.id')
+                 ->where('darbavieta.id', '=', $request->input('uznemums'));
+        })
+        ->
+        select('darbavieta.uznemums',DB::raw('round(AVG(atalgojums.alga),0) as alga'))->
+        groupBy('darbavieta.uznemums')->
+        get();
+
+
+        return view('show_viddarbavieta')->with('viddarbavieta', $viddarbavieta);
     }
 
     /**
@@ -47,7 +64,7 @@ class VidDarbavietaController extends Controller
      */
     public function show(Vid_Atalgojums_Darbavieta $vid_Atalgojums_Darbavieta)
     {
-        //
+
     }
 
     /**

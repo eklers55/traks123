@@ -36,7 +36,14 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ action('VidDarbavietaController@index') }}">Darba vietas</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">YO NIGGA</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+             {{ __('Iziet') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
           </li>
         </ul>
       </div>

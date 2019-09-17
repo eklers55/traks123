@@ -15,7 +15,11 @@ class VidProfesijaController extends Controller
      */
     public function index()
     {
-        return view('vidprofesija');
+        $profesija = DB::table('profesija')->pluck('nosaukums','id');
+        
+        return view('vidprofesija', ['profesija' => $profesija]);
+        
+        
     }
 
     /**
@@ -36,7 +40,22 @@ class VidProfesijaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id=$request->input('nosaukums');
+
+        $vidprofesija = DB::table('vid_atalgojums_profesija')->
+        join('atalgojums', 'vid_atalgojums_profesija.atalgojums_id', '=', 'atalgojums.id')->
+        join('profesija', function($join) use ($request)
+        {
+            $join->on('vid_atalgojums_profesija.profesija_id', '=', 'profesija.id')
+                 ->where('profesija.id', '=', $request->input('nosaukums'));
+        })
+        ->
+        select('profesija.nosaukums',DB::raw('round(AVG(atalgojums.alga),0) as alga'))->
+        groupBy('profesija.nosaukums')->
+        get();
+
+
+        return view('show_vidprofesija')->with('vidprofesija', $vidprofesija);
     }
 
     /**

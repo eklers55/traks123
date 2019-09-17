@@ -1,16 +1,9 @@
 @extends('layouts.master')
 @section('content')
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
-        <p>Hello world!</p>
+<p>Apskati vidējo algu uzņēmumā! </p>
+{!! Form::open(['action' => 'VidDarbavietaController@store', 'method' => 'POST']) !!}
+{!! Form::label('Izvēlies uzņēmumu:') !!}
+{!! Form::select('uznemums', $darbavieta, null, ['class' => 'form-control']) !!}
+{!! Form::submit('Parādīt vidējo algu uzņēmumā!', ['class' => 'btn btn-info']) !!}
+{!! Form::close() !!} 
 @endsection
