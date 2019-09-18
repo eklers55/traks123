@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="{{ URL::asset('css/freelancer.min.css') }}">
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #F2A4CB;
+                color: #319200;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -51,7 +51,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #319200;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;

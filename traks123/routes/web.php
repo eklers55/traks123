@@ -15,12 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
+    Route::resources(['darbavieta' => 'DarbavietaController',
+    'profesija' => 'ProfesijaController']);
+});
 Route::group(['middleware' => 'auth'], function() {
     Route::resources(['vidprofesija' => 'VidProfesijaController',
                     'viddarbavieta' => 'VidDarbavietaController',
-                    'darbavieta' => 'DarbavietaController',
-                    'profesija' => 'ProfesijaController',
                     'atalgojums' => 'AtalgojumsController']);
 });
 

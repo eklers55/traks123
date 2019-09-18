@@ -15,6 +15,7 @@ class DarbavietaController extends Controller
      */
     public function index()
     {
+        
         return view('darbavieta');
     }
 
@@ -47,7 +48,7 @@ class DarbavietaController extends Controller
         $darbavieta->uznemums = $request->input('uznemums');
         $darbavieta->adrese = $request->input('adrese');
         $darbavieta->save();
-        return view('darbavieta');
+        return redirect()->back()->withErrors('Veiksmīgi pievienots!');
     }
 
     /**
@@ -92,6 +93,8 @@ class DarbavietaController extends Controller
      */
     public function destroy(Darbavieta $darbavieta)
     {
-        //
+        /*$delete_darbavieta = DB::table('darbavieta')->where('id',$darbavieta_db)->delete();
+        $delete_darbavieta = DB::table('atalgojums')->where('uznemums_id',$darbavieta_db)->delete();
+        return redirect()->back()->withErrors('Veiksmīgi izdzēsts!');*/
     }
 }

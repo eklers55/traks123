@@ -21,10 +21,13 @@ class AtalgojumsController extends Controller
         //return view('atalgojums');
         //$atalgojums = DB::table('atalgojums')->pluck('alga');
         $profesija = DB::table('profesija')->pluck('nosaukums','id');
+        //$atalgojums = DB::table('atalgojums')->pluck('alga','id');
         $darbavieta = DB::table('darbavieta')->pluck('uznemums','id');
         //$items = Items::pluck('name', 'id');
+        //$atalgojums = Atalgojums::find($id);
+  
 
-        return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta]);
+        return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta]);//->with('atalgojums', $atalgojums);
         
         
     }
@@ -121,8 +124,8 @@ class AtalgojumsController extends Controller
      * @param  \App\Atalgojums  $atalgojums
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Atalgojums $atalgojums)
+    public function destroy($id)
     {
-        //
+
     }
 }

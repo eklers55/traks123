@@ -2,6 +2,7 @@
 @section('content')
         <p>Pievienot profesiju: </p>
         {!! Form::open(['action' => 'ProfesijaController@store', 'method' => 'POST']) !!}
+        @csrf
         {!! Form::label('Ievadi profesiju:') !!}
         {!! Form::text('nosaukums', '', ['class' => 'form-control', 'placeholder' => 'Profesijas nosaukums']) !!}
         {!! Form::submit('Saglabāt!', ['class' => 'btn btn-info']) !!}

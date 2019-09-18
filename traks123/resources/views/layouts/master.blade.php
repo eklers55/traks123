@@ -29,6 +29,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          @if (Auth::user()->admin == 1)
+          <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ action("ProfesijaController@index") }}">Pievienot Profesiju</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ action('DarbavietaController@index') }}">Pievienot Darba vietu</a>
+            </li>
+          @endif
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ action("VidProfesijaController@index") }}">Profesijas</a>
           </li>
@@ -49,6 +57,7 @@
       </div>
     </div>
   </nav>
+  <br>
   <br>
   <br>
   <br>
