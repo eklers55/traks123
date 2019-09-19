@@ -18,9 +18,9 @@ class CreateAtalgojumsTable extends Migration
             $table->unsignedBigInteger('uznemums_id');
             $table->unsignedBigInteger('lietotajs_id');
             $table->unsignedBigInteger('profesija_id');
-            $table->foreign('uznemums_id')->references('id')->on('darbavieta');
-            $table->foreign('lietotajs_id')->references('id')->on('users');
-            $table->foreign('profesija_id')->references('id')->on('profesija');
+            $table->foreign('uznemums_id')->references('id')->on('darbavieta')->onDelete('cascade');
+            $table->foreign('lietotajs_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('profesija_id')->references('id')->on('profesija')->onDelete('cascade');
             $table->double('alga', 8, 2);
         });
     }

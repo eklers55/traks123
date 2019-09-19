@@ -31,7 +31,21 @@
                                               </div>
                 
                 @endforeach
-
+                <br>
+                <h2 class="text-uppercase text-secondary mb-0">Top 5 profesijas ar lielākajām algām šajā uzņēmumā: </h2>
+                <br>
+                <table style="width:100%">
+                    <tr>
+                      <th>Profesija</th>
+                      <th>Alga</th>
+                    </tr>
+                    @foreach($topdarbavieta as $keys => $values)
+                    <tr>
+                      <td>{!! $values->nosaukums !!}</td>
+                      <td>{!! $values->alga !!}</td>
+                    </tr>
+                    @endforeach
+                  </table>
 
             
         </div>

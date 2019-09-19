@@ -26,6 +26,6 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Auth::routes();
-
+Route::delete('/atalgojums/{atalgojums}', 'AtalgojumsController@destroy');
 
 

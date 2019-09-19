@@ -14,7 +14,18 @@
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="{{ URL::asset('css/freelancer.min.css') }}">
-
+  <style>
+  html, body {
+    background-image: url('{{ asset('background.jpg')}}');
+    background-color: rgba(255, 255, 255, 0.9);
+    background-blend-mode: lighten;
+  }
+  table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+  </style>
 </head>
 
 <body id="page-top">

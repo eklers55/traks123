@@ -18,16 +18,17 @@ class AtalgojumsController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
         //return view('atalgojums');
         //$atalgojums = DB::table('atalgojums')->pluck('alga');
         $profesija = DB::table('profesija')->pluck('nosaukums','id');
         //$atalgojums = DB::table('atalgojums')->pluck('alga','id');
         $darbavieta = DB::table('darbavieta')->pluck('uznemums','id');
         //$items = Items::pluck('name', 'id');
-        //$atalgojums = Atalgojums::find($id);
+        $atalgojums = DB::table('atalgojums')->select('*')->where('lietotajs_id',$user->id)->get();
   
 
-        return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta]);//->with('atalgojums', $atalgojums);
+        return view('atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta])->with(['atalgojums' => $atalgojums]);
         
         
     }
@@ -57,9 +58,10 @@ class AtalgojumsController extends Controller
             'uznemums' => 'required',
             'alga' => 'required'
         ]);
-        // add to atalgojums       
+        // add to atalgojums  
+        $user = auth()->user();     
         $atalgojums = new Atalgojums;
-        $atalgojums->lietotajs_id = '1';
+        $atalgojums->lietotajs_id = $user->id;
         $atalgojums->alga = $request->input('alga');
         $atalgojums->profesija_id = $request->input('nosaukums');
         $atalgojums->uznemums_id = $request->input('uznemums');
@@ -74,7 +76,7 @@ class AtalgojumsController extends Controller
         
         // add to vid atalgojums profesija
         $vidprofesija = new Vid_Atalgojums_Profesija;
-        $vidprofesija->profesija_id = $request->input('uznemums');
+        $vidprofesija->profesija_id = $request->input('nosaukums');
         $vidprofesija->atalgojums_id = $last_id;
         $vidprofesija->save();
         
@@ -124,8 +126,12 @@ class AtalgojumsController extends Controller
      * @param  \App\Atalgojums  $atalgojums
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Atalgojums $atalgojums)
     {
+        //$this->authorize('destroy', $atalgojums);
 
+        $atalgojums->delete();
+    
+        return redirect('/atalgojums');
     }
 }

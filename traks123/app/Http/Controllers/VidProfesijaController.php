@@ -40,8 +40,8 @@ class VidProfesijaController extends Controller
      */
     public function store(Request $request)
     {
-        $id=$request->input('nosaukums');
-
+        
+        //videjas profesijas rekinasana no datubazes
         $vidprofesija = DB::table('vid_atalgojums_profesija')->
         join('atalgojums', 'vid_atalgojums_profesija.atalgojums_id', '=', 'atalgojums.id')->
         join('profesija', function($join) use ($request)
@@ -54,8 +54,21 @@ class VidProfesijaController extends Controller
         groupBy('profesija.nosaukums')->
         get();
 
+        $toppprofesija = DB::table('vid_atalgojums_profesija')->
+        join('atalgojums', 'vid_atalgojums_profesija.atalgojums_id', '=', 'atalgojums.id')->
+        join('profesija', function($join) use ($request)
+        {
+            $join->on('vid_atalgojums_profesija.profesija_id', '=', 'profesija.id')
+                 ->where('profesija.id', '=', $request->input('nosaukums'));
+        })
+        ->
+        join('darbavieta', 'atalgojums.uznemums_id', '=', 'darbavieta.id')->
+        select('profesija.nosaukums','atalgojums.alga', 'darbavieta.uznemums')->
+        orderBy('atalgojums.alga', 'desc')->
+        take(5)->
+        get();
 
-        return view('show_vidprofesija')->with('vidprofesija', $vidprofesija);
+        return view('show_vidprofesija')->with('vidprofesija', $vidprofesija)->with('topprofesija', $toppprofesija);
     }
 
     /**

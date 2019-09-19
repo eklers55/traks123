@@ -18,10 +18,17 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/freelancer.min.css') }}">
+    <style>
+            html, body {
+              background-image: url('{{ asset('background.jpg')}}');
+              background-color: rgba(255, 255, 255, 0.9);
+              background-blend-mode: lighten;
+            }
+            </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -72,7 +79,13 @@
                 </div>
             </div>
         </nav>
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      
         <div>
             @yield('content')
         </div>

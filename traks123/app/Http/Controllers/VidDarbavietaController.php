@@ -38,7 +38,7 @@ class VidDarbavietaController extends Controller
      */
     public function store(Request $request)
     {   
-        $id=$request->input('uznemums');
+        
 
         $viddarbavieta = DB::table('vid_atalgojums_darbavieta')->
         join('atalgojums', 'vid_atalgojums_darbavieta.atalgojums_id', '=', 'atalgojums.id')->
@@ -52,8 +52,22 @@ class VidDarbavietaController extends Controller
         groupBy('darbavieta.uznemums')->
         get();
 
+        $topdarbavieta = DB::table('vid_atalgojums_darbavieta')->
+        join('atalgojums', 'vid_atalgojums_darbavieta.atalgojums_id', '=', 'atalgojums.id')->
+        join('darbavieta', function($join) use ($request)
+        {
+            $join->on('vid_atalgojums_darbavieta.uznemums_id', '=', 'darbavieta.id')
+                 ->where('darbavieta.id', '=', $request->input('uznemums'));
+        })
+        ->
+        join('profesija', 'atalgojums.profesija_id', '=', 'profesija.id')->
+        select('profesija.nosaukums','atalgojums.alga', 'darbavieta.uznemums')->
+        orderBy('atalgojums.alga', 'desc')->
+        take(5)->
+        get();
 
-        return view('show_viddarbavieta')->with('viddarbavieta', $viddarbavieta);
+
+        return view('show_viddarbavieta')->with('viddarbavieta', $viddarbavieta)->with('topdarbavieta', $topdarbavieta);
     }
 
     /**

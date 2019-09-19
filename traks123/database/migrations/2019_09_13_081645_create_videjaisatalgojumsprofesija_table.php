@@ -17,8 +17,8 @@ class CreateVidejaisatalgojumsprofesijaTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('profesija_id');
             $table->unsignedBigInteger('atalgojums_id');
-            $table->foreign('profesija_id')->references('id')->on('profesija');
-            $table->foreign('atalgojums_id')->references('id')->on('atalgojums');
+            $table->foreign('profesija_id')->references('id')->on('profesija')->onDelete('cascade');
+            $table->foreign('atalgojums_id')->references('id')->on('atalgojums')->onDelete('cascade');
         });
     }
 
