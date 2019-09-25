@@ -22,7 +22,8 @@ Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::resources(['vidprofesija' => 'VidProfesijaController',
                     'viddarbavieta' => 'VidDarbavietaController',
-                    'atalgojums' => 'AtalgojumsController']);
+                    'atalgojums' => 'AtalgojumsController',
+                    'admin' => 'AdminController']);
 });
 
 Auth::routes();
