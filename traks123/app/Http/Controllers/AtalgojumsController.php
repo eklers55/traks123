@@ -82,7 +82,7 @@ class AtalgojumsController extends Controller
         
         
         
-        return redirect('/atalgojums');
+        return redirect('/atalgojums')->withSuccess('Atalgojums Pievienots!');
     
     }
 
@@ -126,12 +126,11 @@ class AtalgojumsController extends Controller
      * @param  \App\Atalgojums  $atalgojums
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Atalgojums $atalgojums)
+    public function destroy($id)
     {
         //$this->authorize('destroy', $atalgojums);
 
-        $atalgojums->delete();
-    
-        return redirect('/atalgojums');
+        Atalgojums::destroy($id);
+        return redirect('/atalgojums')->withSuccess('Atalgojums dzēsts!');
     }
 }

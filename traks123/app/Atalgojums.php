@@ -15,12 +15,4 @@ class Atalgojums extends Model
         'alga',
     ];
     
-    public static function boot()
-    {
-    parent::boot();
-
-    static::deleted(function($atalgojums){
-        $atalgojums->keywords()->delete();
-    });
-    }
 }

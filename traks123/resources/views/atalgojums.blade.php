@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
         {!! Form::open(['action' => 'AtalgojumsController@store', 'method' => 'POST']) !!}
         @csrf
         {!! Form::label('Izvēlies savu profesiju:') !!}

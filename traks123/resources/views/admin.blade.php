@@ -1,9 +1,7 @@
 @extends('layouts.master')
 @section('content')
 @if (Auth::user()->admin == 1)
-@if(session('success'))
-    <h1>{{session('success')}}</h1>
-@endif
+
 <div class="col-lg-10 col-lg-offset-1">
 
     <div class="table-responsive">
