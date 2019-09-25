@@ -105,4 +105,15 @@ class AdminController extends Controller
 
 		return redirect('/admin')->withSuccess('Lietotājs dzēsts!');
     }
+
+
+    public function delete_atalgojums()
+    {
+                $profesija = DB::table('profesija')->pluck('nosaukums','id');
+                //$atalgojums = DB::table('atalgojums')->pluck('alga','id');
+                $darbavieta = DB::table('darbavieta')->pluck('uznemums','id');
+                //$items = Items::pluck('name', 'id');
+                $atalgojums = DB::table('atalgojums')->select('*')->get();
+                return view('admin.delete_atalgojums', ['profesija' => $profesija], ['darbavieta' => $darbavieta])->with(['atalgojums' => $atalgojums]);
+    }
 }

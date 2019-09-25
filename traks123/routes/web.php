@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
     Route::resources(['darbavieta' => 'DarbavietaController',
     'profesija' => 'ProfesijaController']);
@@ -28,5 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 Route::delete('/atalgojums/{atalgojums}', 'AtalgojumsController@destroy');
+
+Route::get('/admin/delete_atalgojums', 'AdminController@delete_atalgojums');
+
+
 
 
